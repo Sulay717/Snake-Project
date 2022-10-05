@@ -3,7 +3,11 @@ import keyboard
 import time
 
 wn = turtle.Screen()
+wn.screensize(400,300,'Pink')
 snake = turtle.Turtle()
+snake.pensize(5)
+
+
 
 def toRight():
     if snake.heading() != 180:
@@ -28,20 +32,17 @@ def toDown():
 
 while True:
     snake.fd(0.5)
-    if keyboard.is_pressed('Left'):
-        toLeft()
-    elif keyboard.is_pressed('Right'):
-        toRight()
-    elif keyboard.is_pressed('Up'):
-        toUp()
-    elif keyboard.is_pressed('Down'):
-        toDown()
+    wn.onkeypress(toLeft,'Left')
+    wn.onkeypress(toRight,'Right')
+    wn.onkeypress(toUp,'Up')
+    wn.onkeypress(toDown,'Down')
+
+
+    wn.listen()
 
 
 
 
-wn.onkey(toRight,'a')
 
 
-wn.listen()
 wn.mainloop()
