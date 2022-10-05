@@ -1,10 +1,9 @@
-from curses import window
-from tkinter import W
 import turtle
 import keyboard
 import time
 
 wn = turtle.Screen()
+wn.setup(400,400)
 wn.screensize(400,400)
 
 snake = turtle.Turtle()
@@ -45,7 +44,7 @@ while True:
     wn.onkeypress(toRight,'Right')
     wn.onkeypress(toUp,'Up')
     wn.onkeypress(toDown,'Down')
-    if snake.pos() == (w,0):
+    if snake.pos() == (0,400)  or snake.pos() == (400,0):
         print('Nax reach')
         break
 
