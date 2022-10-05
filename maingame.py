@@ -1,11 +1,20 @@
+from curses import window
+from tkinter import W
 import turtle
 import keyboard
 import time
 
 wn = turtle.Screen()
-wn.screensize(400,300,'Pink')
+wn.screensize(400,400)
+
 snake = turtle.Turtle()
 snake.pensize(5)
+
+h = wn.canvheight
+w = wn.canvwidth
+
+print(h,w)
+
 
 
 
@@ -36,6 +45,15 @@ while True:
     wn.onkeypress(toRight,'Right')
     wn.onkeypress(toUp,'Up')
     wn.onkeypress(toDown,'Down')
+    if snake.pos() == (w,0):
+        print('Nax reach')
+        break
+
+
+    """ if snake.pos() == (turtle.window_width,0):
+        print('limit reached')
+        break """
+
 
 
     wn.listen()
