@@ -1,19 +1,16 @@
+from logging import root
 import turtle
 import keyboard
 import time
+import tkinter as tk
 
-wn = turtle.Screen()
-wn.setup(400,400)
-wn.screensize(400,400)
+root = tk.Tk()
+canvas = tk.Canvas(root,width=500,height=500)
+canvas.pack()
+wn = turtle.TurtleScreen(canvas)
 
-snake = turtle.Turtle()
+snake = turtle.RawTurtle(wn)
 snake.pensize(5)
-
-h = wn.canvheight
-w = wn.canvwidth
-
-print(h,w)
-
 
 
 
@@ -44,10 +41,9 @@ while True:
     wn.onkeypress(toRight,'Right')
     wn.onkeypress(toUp,'Up')
     wn.onkeypress(toDown,'Down')
-    if snake.pos() == (0,400)  or snake.pos() == (400,0):
-        print('Nax reach')
+    if snake.xcor() == wn.window_height():
+        print('reached maxed')
         break
-
 
     """ if snake.pos() == (turtle.window_width,0):
         print('limit reached')
