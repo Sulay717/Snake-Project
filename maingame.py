@@ -5,7 +5,7 @@ import time
 import tkinter as tk
 
 root = tk.Tk()
-canvas = tk.Canvas(root,width=500,height=500)
+canvas = tk.Canvas(root,width=400,height=400)
 canvas.pack()
 wn = turtle.TurtleScreen(canvas)
 
@@ -41,9 +41,10 @@ while True:
     wn.onkeypress(toRight,'Right')
     wn.onkeypress(toUp,'Up')
     wn.onkeypress(toDown,'Down')
-    if snake.xcor() == wn.window_height():
+    if snake.xcor() == 200 or snake.ycor() == 200:
         print('reached maxed')
         break
+
 
     """ if snake.pos() == (turtle.window_width,0):
         print('limit reached')
