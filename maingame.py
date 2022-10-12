@@ -14,6 +14,14 @@ snake = turtle.RawTurtle(wn)
 snake.penup()
 snake.pensize(5)
 
+dshape =((0, 0), (10, 10), (20, 0), (10, -10))
+
+diamond = turtle.RawTurtle(wn)
+wn.register_shape('Diamond', dshape)
+diamond.shape('Diamond')
+diamond.pu()
+diamond.goto(random.randrange(1,200),random.randrange(1,200))
+
 
 
 def toRight():
@@ -36,16 +44,12 @@ def toDown():
         if snake.heading() != 90:
             snake.setheading(270)
 
-dshape =((0, 0), (10, 10), (20, 0), (10, -10))
 
 def powerUP():
-    diamond = turtle.RawTurtle(wn)
-    wn.register_shape('Diamond', dshape)
-    diamond.shape('Diamond')
+    diamond.goto(random.randrange(1,200),random.randrange(1,200))
     time.sleep(6)
     
 
-powerUP()
 
 def snakeDied():
     snake.reset
@@ -58,6 +62,7 @@ while True:
     wn.onkeypress(toRight,'Right')
     wn.onkeypress(toUp,'Up')
     wn.onkeypress(toDown,'Down')
+    
     if snake.xcor() == 200 or snake.ycor() == 200:
         print('reached maxed')
         snakeDied()
