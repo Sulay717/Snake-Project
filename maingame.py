@@ -1,8 +1,9 @@
-from logging import root
+from atexit import register
 import turtle
 import keyboard
 import time
 import tkinter as tk
+import random
 
 root = tk.Tk()
 canvas = tk.Canvas(root,width=400,height=400)
@@ -10,6 +11,7 @@ canvas.pack()
 wn = turtle.TurtleScreen(canvas)
 
 snake = turtle.RawTurtle(wn)
+snake.penup()
 snake.pensize(5)
 
 
@@ -33,6 +35,21 @@ def toDown():
     if snake.heading() != 270:
         if snake.heading() != 90:
             snake.setheading(270)
+
+dshape =((0, 0), (10, 10), (20, 0), (10, -10))
+
+def powerUP():
+    diamond = turtle.RawTurtle(wn)
+    wn.register_shape('Diamond', dshape)
+    diamond.shape('Diamond')
+    time.sleep(6)
+    
+
+powerUP()
+
+def snakeDied():
+    snake.reset
+
         
 
 while True:
@@ -43,7 +60,7 @@ while True:
     wn.onkeypress(toDown,'Down')
     if snake.xcor() == 200 or snake.ycor() == 200:
         print('reached maxed')
-        break
+        snakeDied()
 
 
     """ if snake.pos() == (turtle.window_width,0):
