@@ -13,6 +13,7 @@ wn = turtle.TurtleScreen(canvas)
 snake = turtle.RawTurtle(wn)
 snake.penup()
 snake.pensize(5)
+snake.Alive = True
 
 dshape =((0, 0), (10, 10), (20, 0), (10, -10))
 
@@ -52,17 +53,17 @@ def powerUP():
 
 
 def snakeDied():
-    snake.reset
+    snake.Alive = False
+    print(snake.Alive)
 
         
 
-while True:
+while snake.Alive == True:
     snake.fd(0.5)
     wn.onkeypress(toLeft,'Left')
     wn.onkeypress(toRight,'Right')
     wn.onkeypress(toUp,'Up')
     wn.onkeypress(toDown,'Down')
-    
     if snake.xcor() == 200 or snake.ycor() == 200:
         print('reached maxed')
         snakeDied()
