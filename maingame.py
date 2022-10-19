@@ -1,20 +1,27 @@
 import turtle
 import keyboard
 import time
+import tkinter as tk
+import random
 
-wn = turtle.Screen()
-wn.setup(400,400)
-wn.screensize(400,400)
+root = tk.Tk()
+canvas = tk.Canvas(root,width=400,height=400)
+canvas.pack()
+wn = turtle.TurtleScreen(canvas)
 
-snake = turtle.Turtle()
+snake = turtle.RawTurtle(wn)
+snake.penup()
 snake.pensize(5)
+snake.Alive = True
 
-h = wn.canvheight
-w = wn.canvwidth
+dshape =((0, 0), (10, 10), (20, 0), (10, -10))
 
-print(h,w)
-
-
+diamond = turtle.RawTurtle(wn)
+wn.register_shape('Diamond', dshape)
+diamond.shape('Diamond')
+diamond.pu()
+diamond.goto(random.randrange(1,200),random.randrange(1,200))
+game_time = 0
 
 
 def toRight():
@@ -36,17 +43,29 @@ def toDown():
     if snake.heading() != 270:
         if snake.heading() != 90:
             snake.setheading(270)
+
+
+def powerUP():
+    diamond.goto(random.randrange(-20,200),random.randrange(-200,200))
+    
+
+
+def snakeDied():
+    snake.Alive = False
+    print(snake.Alive)
+
         
 
-while True:
+
+while snake.Alive == True:
     snake.fd(0.5)
     wn.onkeypress(toLeft,'Left')
     wn.onkeypress(toRight,'Right')
     wn.onkeypress(toUp,'Up')
     wn.onkeypress(toDown,'Down')
-    if snake.pos() == (0,400)  or snake.pos() == (400,0):
-        print('Nax reach')
-        break
+    if abs(snake.xcor()) == 200 or abs(snake.ycor()) == 200:
+        print('reached maxed')
+        snakeDied()
 
 
     """ if snake.pos() == (turtle.window_width,0):
@@ -54,8 +73,10 @@ while True:
         break """
 
 
-
     wn.listen()
+    game_time+=1
+    print(game_time/100)
+    time.sleep(.01)
 
 
 
