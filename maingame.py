@@ -56,7 +56,6 @@ def snakeDied():
 
         
 
-
 while snake.Alive == True:
     snake.fd(0.5)
     wn.onkeypress(toLeft,'Left')
