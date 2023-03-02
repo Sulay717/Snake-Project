@@ -1,4 +1,3 @@
-from atexit import register
 import turtle
 import keyboard
 import time
@@ -17,13 +16,12 @@ snake.Alive = True
 
 dshape =((0, 0), (10, 10), (20, 0), (10, -10))
 
-class Food:
-    touched = False
-    diamond = turtle.RawTurtle(wn)
-    wn.register_shape('Diamond', dshape)
-    diamond.shape('Diamond')
-    diamond.pu()
-    diamond.goto(random.randrange(1,200),random.randrange(1,200))
+diamond = turtle.RawTurtle(wn)
+wn.register_shape('Diamond', dshape)
+diamond.shape('Diamond')
+diamond.pu()
+diamond.goto(random.randrange(1,200),random.randrange(1,200))
+
 
 
 def toRight():
@@ -48,8 +46,7 @@ def toDown():
 
 
 def powerUP():
-    diamond.goto(random.randrange(1,200),random.randrange(1,200))
-    time.sleep(6)
+    diamond.goto(random.randrange(-20,200),random.randrange(-200,200))
     
 
 
@@ -66,7 +63,7 @@ while snake.Alive == True:
     wn.onkeypress(toRight,'Right')
     wn.onkeypress(toUp,'Up')
     wn.onkeypress(toDown,'Down')
-    if snake.xcor() == 200 or snake.ycor() == 200:
+    if abs(snake.xcor()) == 200 or abs(snake.ycor()) == 200:
         print('reached maxed')
         snakeDied()
 
@@ -75,8 +72,10 @@ while snake.Alive == True:
         break """
 
 
-
     wn.listen()
+    game_time+=1
+    print(game_time/100)
+    time.sleep(.01)
 
 
 
