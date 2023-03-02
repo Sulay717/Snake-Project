@@ -17,12 +17,13 @@ snake.Alive = True
 
 dshape =((0, 0), (10, 10), (20, 0), (10, -10))
 
-diamond = turtle.RawTurtle(wn)
-wn.register_shape('Diamond', dshape)
-diamond.shape('Diamond')
-diamond.pu()
-diamond.goto(random.randrange(1,200),random.randrange(1,200))
-
+class Food:
+    touched = False
+    diamond = turtle.RawTurtle(wn)
+    wn.register_shape('Diamond', dshape)
+    diamond.shape('Diamond')
+    diamond.pu()
+    diamond.goto(random.randrange(1,200),random.randrange(1,200))
 
 
 def toRight():
@@ -56,7 +57,8 @@ def snakeDied():
     snake.Alive = False
     print(snake.Alive)
 
-        
+
+#new = Food
 
 while snake.Alive == True:
     snake.fd(0.5)
@@ -67,7 +69,6 @@ while snake.Alive == True:
     if snake.xcor() == 200 or snake.ycor() == 200:
         print('reached maxed')
         snakeDied()
-
 
     """ if snake.pos() == (turtle.window_width,0):
         print('limit reached')
